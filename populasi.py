@@ -2,7 +2,7 @@ import pygame, random
 from blok import Blok
 from roket import Roket
 from target import Target
-from util import *
+from util import Warna, Konfigurasi
 
 
 Posisi = tuple[int, int]
@@ -42,8 +42,8 @@ class Populasi:
     def _genom_acak(self) -> list[tuple[float, float]]:
         genom: list[tuple[float, float]] = []
         for _ in range(self.panjang_genom):
-            vx = random.randint(-KECEPATAN_MAKSIMAL_ROKET, KECEPATAN_MAKSIMAL_ROKET)
-            vy = random.randint(-KECEPATAN_MAKSIMAL_ROKET, 0)
+            vx = random.randint(-Konfigurasi.KECEPATAN_MAKSIMAL_ROKET, Konfigurasi.KECEPATAN_MAKSIMAL_ROKET)
+            vy = random.randint(-Konfigurasi.KECEPATAN_MAKSIMAL_ROKET, 0)
             genom.append((vx, vy))
         return genom
 
@@ -129,14 +129,14 @@ class Populasi:
             print(f"Rata-rata fitness: {self.rata_rata_fitness:}")
             print(f"Jumlah capai target: {jumlah_mencapai_target}")
         teks = [
-            FONT.render(f"Generasi #{self.nomor_generasi}", 1, PUTIH),
-            FONT.render(f"Fitness maks: {self.maks_fitness:}", 1, PUTIH),
-            FONT.render(f"Fitness min: {self.min_fitness:}", 1, PUTIH),
-            FONT.render(f"Rata-rata: {self.rata_rata_fitness:}", 1, PUTIH),
-            FONT.render(f"Capai target: {jumlah_mencapai_target}", 1, PUTIH),
+            Konfigurasi.FONT.render(f"Generasi #{self.nomor_generasi}", 1, Warna.PUTIH),
+            Konfigurasi.FONT.render(f"Fitness maks: {self.maks_fitness:}", 1, Warna.PUTIH),
+            Konfigurasi.FONT.render(f"Fitness min: {self.min_fitness:}", 1, Warna.PUTIH),
+            Konfigurasi.FONT.render(f"Rata-rata: {self.rata_rata_fitness:}", 1, Warna.PUTIH),
+            Konfigurasi.FONT.render(f"Capai target: {jumlah_mencapai_target}", 1, Warna.PUTIH),
         ]
 
         x, y, jarak = 30, 600, 30
         for t in teks:
-            JENDELA.blit(t, (x, y))
+            Konfigurasi.JENDELA.blit(t, (x, y))
             y += jarak

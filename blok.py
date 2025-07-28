@@ -1,5 +1,5 @@
 import pygame
-from util import *
+from util import Warna
 
 
 class Blok(pygame.sprite.Sprite):
@@ -13,4 +13,4 @@ class Blok(pygame.sprite.Sprite):
         )
 
     def gambar(self, jendela: pygame.Surface) -> None:
-        pygame.draw.rect(jendela, MERAH, self.rect)
+        pygame.draw.rect(jendela, Warna.MERAH, self.rect)
